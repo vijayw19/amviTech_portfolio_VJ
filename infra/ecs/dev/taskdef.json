@@ -1,0 +1,28 @@
+{
+  "family": "amvitech-portfolio-dev",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "REPLACE_EXECUTION_ROLE_ARN_DEV",
+  "taskRoleArn": "REPLACE_TASK_ROLE_ARN_DEV",
+  "containerDefinitions": [
+    {
+      "name": "web",
+      "image": "REPLACE_IMAGE",
+      "essential": true,
+      "portMappings": [{ "containerPort": 80, "protocol": "tcp" }],
+      "environment": [
+        { "name": "APP_ENV", "value": "dev" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-region": "REPLACE_AWS_REGION",
+          "awslogs-group": "/ecs/amvitech-portfolio-dev",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
